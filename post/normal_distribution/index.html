@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <base href="https://tranduythanh.github.io/">
+    
+
+    <link rel="dns-prefetch" href="//fonts.googleapis.com/">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400' rel='stylesheet' type='text/css'>
+
+    <title>
+      
+      
+         Normal Distribution - Phân phối chuẩn 
+      
+    </title>
+    <link rel="canonical" href="https://tranduythanh.github.io/post/normal_distribution/">
+
+    <style>
+  * {
+    border:0;
+    font:inherit;
+    font-size:100%;
+    vertical-align:baseline;
+    margin:0;
+    padding:0;
+    color: #1d1313;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 17px;
+    line-height: 1.42857143;
+    color: #1d1313;
+    max-width: 700px;
+    margin: auto;
+  }
+
+  p {
+    margin: 20px 0;
+  }
+
+  a {
+    color: #3777b0;
+    text-decoration: unset;
+  }
+
+  a:hover, a:focus {
+    color: #255076;
+    text-decoration: underline;
+  }
+
+  a img {
+    border:none;
+  }
+
+  img {
+    margin: 10px auto 10px auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  pre, code {
+    font: 17px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  }
+
+  code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 3px;
+  }
+
+  code.has-jax {
+    font: inherit;
+    font-size: 90%;
+    background: inherit;
+    border: inherit;
+  }
+
+  pre {
+    margin-top: 0;
+    margin-bottom: 16px;
+    word-wrap: normal;
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+  }
+
+  pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+  }
+
+  pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: normal;
+  }
+
+  em,q,em,dfn {
+    font-style:italic;
+  }
+
+  .sans,html .gist .gist-file .gist-meta {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+  }
+
+  .mono,pre,code,tt,p code,li code {
+    font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+  }
+
+  .heading,.serif,h1,h2,h3 {
+    font-family:"Open Sans","Myriad Pro",Myriad,sans-serif;
+    font-weight: bold;
+  }
+
+  strong {
+    font-weight:600;
+  }
+
+  q:before {
+    content:"\201C";
+  }
+
+  q:after {
+    content:"\201D";
+  }
+
+  del,s {
+    text-decoration:line-through;
+  }
+
+  blockquote {
+    font-family:"Old Standard TT",serif;
+    text-align: left;
+    padding-left: 28px;
+    background-color: #f1f1f1;
+  }
+
+  blockquote p {
+    display:inline-block;
+    font-style:italic;
+  }
+
+  blockquote:before,blockquote:after {
+    font-family:"Old Standard TT",serif;
+    content:'\201C';
+    font-size:35px;
+    color:#403c3b;
+  }
+
+  blockquote:after {
+    content:'\201D';
+  }
+
+  hr {
+    width:40%;
+    height: 1px;
+    background:#403c3b;
+    margin: 25px auto;
+  }
+
+  h1 {
+    font-size:35px;
+  }
+
+  h2 {
+    font-size:28px;
+  }
+
+  h3 {
+    font-size:22px;
+    margin-top:18px;
+  }
+
+  h1 a,h2 a,h3 a {
+    text-decoration:none;
+  }
+
+  h1,h2 {
+    margin-top:28px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    vertical-align: middle;
+  }
+
+  th {
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+
+  td {
+    text-align: left;
+  }
+
+  #sub-header, time {
+    color:#403c3b;
+    font-size:13px;
+  }
+
+  #sub-header {
+    margin: 0 4px;
+  }
+
+  #nav h1 a {
+    font-size:35px;
+    color:#1d1313;
+    line-height:120%;
+  }
+
+  .posts_listing a,#nav a {
+    color: #1d1313;
+    text-decoration: none;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  ul li {
+     
+  }
+
+  ul li {
+     
+  }
+  ul li:before {
+     
+  }
+
+  #nav ul li:before, .posts_listing li:before {
+    content:'';
+    margin-right:0;
+  }
+
+  #content {
+    text-align:left;
+    width:100%;
+    font-size:15px;
+    padding:60px 0 80px;
+  }
+
+  #content h1,#content h2 {
+    margin-bottom:5px;
+  }
+
+  #content h2 {
+    font-size:25px;
+  }
+
+  #content .entry-content {
+    margin-top:15px;
+  }
+
+  #content time {
+    margin-left:3px;
+  }
+
+  #content h1 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .highlight {
+    margin: 10px 0;
+  }
+
+  .posts_listing {
+    margin:0 0 50px;
+  }
+
+  .posts_listing li {
+    margin:0 0 25px 15px;
+  }
+
+  .posts_listing li a:hover,#nav a:hover {
+    text-decoration: underline;
+  }
+
+  #nav {
+    text-align:center;
+    position:static;
+    margin-top:60px;
+  }
+
+  #nav ul {
+    display: table;
+    margin: 8px auto 0 auto;
+  }
+
+  #nav li {
+    list-style-type:none;
+    display:table-cell;
+    font-size:15px;
+    padding: 0 20px;
+  }
+
+  #links {
+    margin: 50px 0 0 0;
+  }
+
+  #links :nth-child(2) {
+    float:right;
+  }
+
+  #not-found {
+    text-align: center;
+  }
+
+  #not-found a {
+    font-family:"Old Standard TT",serif;
+    font-size: 200px;
+    text-decoration: none;
+    display: inline-block;
+    padding-top: 225px;
+  }
+
+  @media (max-width: 750px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:28px;
+    }
+
+    #nav li {
+      font-size:13px;
+      padding: 0 15px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:50px;
+      font-size:14px;
+    }
+
+    #content h1 {
+      font-size:25px;
+    }
+
+    #content h2 {
+      font-size:22px;
+    }
+
+    .posts_listing li div {
+      font-size:12px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    body {
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    #nav h1 a {
+      font-size:22px;
+    }
+
+    #nav li {
+      font-size:12px;
+      padding: 0 10px;
+    }
+
+    #content {
+      margin-top:0;
+      padding-top:20px;
+      font-size:12px;
+    }
+
+    #content h1 {
+      font-size:20px;
+    }
+
+    #content h2 {
+      font-size:18px;
+    }
+
+    .posts_listing li div{
+      font-size:12px;
+    }
+  }
+</style>
+
+
+    <link rel="shortcut icon" href="https://tranduythanh.github.io/favicon.ico">
+
+    
+
+    <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            showProcessingMessages: false,
+            messageStyle: "none",
+            tex2jax: {
+                inlineMath: [['$','$'], ['\\(','\\)']],
+                displayMath: [['$$','$$'], ['\[','\]']],
+                processEscapes: true,
+                processEnvironments: true,
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+                TeX: { equationNumbers: { autoNumber: "AMS" },
+                     extensions: ["AMSmath.js", "AMSsymbols.js"] }
+            }
+        });
+
+        MathJax.Hub.Queue(function() {
+            
+            
+            
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i = 0; i < all.length; i += 1) {
+                all[i].SourceElement().parentNode.className += ' has-jax';
+            }
+        });
+    </script>
+  </head>
+
+  <body>
+    <section id=nav>
+      <h1><a href="https://tranduythanh.github.io/">From Zero to AI</a></h1>
+      <ul>
+        
+          <li><a href="https://tranduythanh.github.io/">About</a></li>
+        
+          <li><a href="https://tranduythanh.github.io/">Home</a></li>
+        
+          <li><a href="https://tranduythanh.github.io/">Resume</a></li>
+        
+      </ul>
+    </section>
+
+
+<section id=content>
+  <h1> Normal Distribution - Phân phối chuẩn </h1>
+
+  <div id=sub-header>
+    February 2017 · 6 minute read
+  </div>
+
+  <div class="entry-content">
+    
+
+<h3 id="từ-đâu-người-ta-nhận-ra-sự-hiện-diện-của-phân-phối-chuẩn">Từ đâu người ta nhận ra sự hiện diện của phân phối chuẩn?</h3>
+
+<p>Làm việc với thống kê, tôi nghe nhiều về phân phối chuẩn. Cơ mà tôi cứ thắc mắc mãi:</p>
+
+<ol>
+<li>Từ đâu mà người ta <code>nhận ra sự có mặt</code> của phân phối chuẩn?</li>
+<li>Hàm phân phối xác suất của phân phối chuẩn được <code>tìm ra như thế nào</code>?</li>
+</ol>
+
+<p>Từ các <a href="https://www.quora.com/How-did-humans-derive-the-normal-distribution">câu trả lời</a>, tôi lần theo các tham khảo và cuối cùng cũng tổng hợp cho mình một câu trả lời hài lòng. Nay tôi xin tóm tắt lại cùng với một vài kiến giải dựa trên hiểu biết khiêm tốn của mình:</p>
+
+<p>Từ lâu, trong quá trình thống kê các thông số như:</p>
+
+<ol>
+<li>Đặc tính sinh trắc học của những người khỏe mạnh, cùng giới tính, độ tuổi: cân nặng, chiều cao, trị số mạch, huyết áp, đường máu, số lượng hồng cầu</li>
+<li>Các chỉ số sinh học của loài vật, loài cây cùng độ tuổi</li>
+<li>Khối lượng, kích thước của các sản phẩm do cùng một máy (hoặc hệ thống máy) sản xuất ra</li>
+<li>Độ lệch của phi tiêu (trong trò chơi phóng phi tiêu vào bia điểm gồm các vòng tròn đen trắng)
+&hellip;</li>
+</ol>
+
+<blockquote>
+<p>Người ta đã nhận thấy biểu đồ phân phối xác suất (cũng như biểu đồ phần phối tần số) của các thông số trên đều có dạng na ná nhau, nhìn giống như cái chuông (bell curve).</p>
+</blockquote>
+
+<p><img src="normal_distribution.diastolic_blood_pressure.png" alt="" /></p>
+
+<p>Nhìn vào những biểu đồ phân phối kiểu như thế này, chắc bạn cũng bắt đầu đoán nhận rằng phải có một quy luật chung nào đó. Và nếu quy luật đó tồn tại thì nó có thể được biểu diễn được bởi một hàm số toán học (chính là hàm phân phối xác suất)</p>
+
+<h3 id="ta-đi-tìm-hàm-phân-phối-xác-suất-đó-thế-nào-đây">Ta đi tìm hàm phân phối xác suất đó thế nào đây?</h3>
+
+<p>Ý tưởng: thử áp dụng toán học để phân tích 1 vị dụ cụ thể (đã đưa ra ở trên)</p>
+
+<p>Ở đây tôi sẽ phân tích ví dụ về trò chơi ném phi tiêu. Để bắt đầu, cần lưu ý 3 giả định sau:</p>
+
+<ol>
+<li>Độ lệch của phi tiêu không phụ thuộc vào <code>hướng của hệ trục tọa độ</code> (Ở đây ta lấy tâm của bia làm gốc tọa độ decarte)</li>
+<li>Độ lệch theo hướng <code>trực giao</code> là <code>độc lập</code>. Tức là nếu chúng ta đi chệch nhiều theo một hướng thì xác suất của các hướng khác không bị ảnh hưởng. (Ở đây ta chỉ có 2 hướng: ngang-dọc)</li>
+<li><code>Sai lệch nhỏ</code> dễ xay ra hơn <code>sai lệch lớn</code></li>
+</ol>
+
+<p>Giờ vầy: giả sử giờ bạn <em>ngứa tay</em> phóng phi tiêu lên bảng. Xác suất nó bay trúng vùng tô đậm nhỏ nhỏ (gọi là A) trong hình dưới đây là bao nhiêu?</p>
+
+<p><img src="normal_distribution.cartesian_plane.png" alt="" /></p>
+
+<p>Với $\Delta x$, $\Delta y$ vô cùng nhỏ, dễ thấy:</p>
+
+<ul>
+<li>theo phương ngang (x), xác suất phi tiêu bay vào khoảng $[x, x+\Delta x]$ là $p(x)\Delta x$</li>
+<li>theo phương dọc (y), xác suất phi tiêu bay vào khoảng $[y, y+\Delta y]$ là $p(y)\Delta y$</li>
+</ul>
+
+<p>Với giả định độc lập (2) ở trên, ta suy ra xác suất phi tiêu bay vào trong A (vùng tô đậm) là $P_A = p(x)\Delta x.p(y)\Delta y$</p>
+
+<p>Với giả định (1) ở trên, ta suy ra rằng: bất kỳ vùng mặt bảng tương tự A nằm cách tâm O (cũng là tâm bảng) có diện tích bằng $\Delta x\Delta y$ đều có cùng xác suất phi tiêu bay vào. Vậy nên, ta có:
+$$P_A = p(x)\Delta x.p(y)\Delta y = g( r)\Delta x\Delta y$$
+Dễ thấy rằng:
+$$g( r) = p(x)p(y)$$
+Đạo hàm 2 vế theo biến $\theta$. Vì hàm <code>g</code> chỉ phụ thuộc vào khoảng cách từ A đến tâm O (tức là r) chứ không phụ thuộc vào hướng của A so với O (tức là $\theta$) nên ta có:
+$$0=p(x)\frac{dp(y)}{d\theta}+\frac{dp(x)}{d\theta}$$</p>
+
+<p>Với $x=r.cos(\theta)$ và $y=r.sin(\theta)$, áp dụng vào phương trình trên và tính đạo hàm, ta có:
+$$0=p(x)p&rsquo;(y)(r.cos(\theta))+p(y)p&rsquo;(x)(-r.sin(\theta))$$
+tương đương với:
+$$0=p(x)p&rsquo;(y)x-p(y)p&rsquo;(x)y$$
+hay:
+$$\frac{p&rsquo;(x)}{x.p(x)}=\frac{p&rsquo;(y)}{y.p(y)}$$
+Phương trình vi phân này phải đúng với bất kỳ giá trị nào của $x$, $y$ (cần nhắc lại rằng $x$ và $y$ là 2 biến độc lập). Điều đó chỉ xảy ra khi và chỉ khi mỗi tỉ lệ ở mỗi vế của phương trình vi phân trên là một hằng số. Tức là:
+$$\frac{p&rsquo;(x)}{x.p(x)}=\frac{p&rsquo;(y)}{y.p(y)}=C$$
+Bài toán của chúng ta bây giờ quy về việc giải phương trình vi phân sau:
+$$\frac{p&rsquo;(x)}{x.p(x)}=C$$
+$$\iff \frac{p&rsquo;(x)}{p(x)}=Cx$$
+$$\iff ln(p(x))=\frac{1}{2}Cx^2+c$$
+$$\iff p(x)=Ae^{\textstyle\cfrac{1}{2}Cx^2}$$</p>
+
+<p>Với giả định số 3  (<code>Sai lệch nhỏ</code> dễ xảy ra hơn <code>sai lệch lớn</code>), ta suy ra C phải là <code>số âm</code>. Và ta viết lại phương trình trên như sau:
+$$p(x)=Ae^{\textstyle-\cfrac{1}{2}kx^2} ~~~~~ (k &gt; 0)$$</p>
+
+<p>Nhiệm vụ tiếp theo là tìm <code>A</code> và <code>k</code></p>
+
+<h4 id="xác-định-a">Xác định A</h4>
+
+<p>Bất kỳ một hàm phân phối xác suất nào cũng đều phải thỏa mãn: tổng diện tích <strong><em>dưới đường cong</em></strong> (phần xanh dương trong các ví dụ ở dưới) phải bằng 1.</p>
+
+<p><img src="normal_distribution.total.png" alt="" /></p>
+
+<p>Và tất nhiên hàm <code>p</code> cũng không ngoại lệ. Ta có:</p>
+
+<p>$$\int\limits_{-\infty}^{\infty}\textstyle Ae^{-\cfrac{1}{2}kx^2}~dx = 1$$</p>
+
+<p>$$\iff \int\limits_{-\infty}^{\infty}\textstyle e^{-\cfrac{1}{2}kx^2}~dx = \frac{1}{A}$$</p>
+
+<p>Vì hàm số $~~~~~\textstyle e^{\textstyle-\cfrac{1}{2}kx^2}$ có tính đối xứng, nên ta suy ra:</p>
+
+<p>$$\int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}kx^2}~dx = \frac{1}{2A}$$</p>
+
+<p>Tương tự, ta cũng có biểu thức với <code>y</code> như sau:</p>
+
+<p>$$\int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}ky^2}~dy = \frac{1}{2A}$$</p>
+
+<p>Nhân vế theo vế, ta có:</p>
+
+<!--- 
+$$\left( \int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}kx^2}~dx\right).\left( \int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}ky^2}~dy\right) = \frac{1}{{4A}^2}$$
+-->
+
+<p><img src="normal_distribution.equation_01.png" alt="" /></p>
+
+<p>Vì <code>x</code>, <code>y</code> là 2 biến độc lập, ta có thể viết lại tích 2 tích phân trên như một tích phân 2 lớp:</p>
+
+<!---
+$$\int\limits_{0}^{\infty}\int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}k(x^2+y^2)}~dydx = \frac{1}{{4A}^2}$$
+-->
+
+<p><img src="normal_distribution.equation_02.png" alt="" /></p>
+
+<p>Chuyển về hệ tọa độ cực (với biến $r$ và $\theta$), ta có:</p>
+
+<!---
+$$\int\limits_{0}^{\pi/2}\int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}k(r^2)}~r~dr~d\theta = \frac{1}{{4A}^2}$$
+-->
+
+<p><img src="normal_distribution.equation_03.png" alt="" /></p>
+
+<p>Với  $ u=-\frac{k}{2}r^2 $ , ta có:</p>
+
+<!---
+$$\int\limits_{0}^{\pi/2} {-\frac{1}{k}} \left[ \int\limits_{0}^{-\infty}\textstyle e^u~du~d\theta \right] = \frac{1}{{4A}^2}$$
+-->
+
+<p><img src="normal_distribution.equation_04.png" alt="" /></p>
+
+<p>$$\iff \int\limits_{0}^{\pi/2} {-\frac{d\theta}{dk}} = \frac{1}{{4A}^2}$$</p>
+
+<p>$$\iff -\frac{\pi}{2k} = \frac{1}{{4A}^2}$$</p>
+
+<p>$$\iff A = \sqrt{\frac{k}{2\pi}}~~e^\left(-\cfrac{1}{2}{kx}^2\right)$$</p>
+
+<h4 id="xác-định-k">Xác định k</h4>
+
+<p>Ta biết rằng: trung bình (mean) và phương sai (variance) được xác định như sau:</p>
+
+<p>$$(1)~~~~~\mu=\int\limits_{-\infty}^{\infty}x~p(x)~dx$$</p>
+
+<p>$$(2)~~~~~\sigma^2=\int\limits_{-\infty}^{\infty}(x-\mu)^2~p(x)~dx$$</p>
+
+<p>Vì $x~p(x)$ là hàm lẻ nên ta có ngay $\mu=0$. Thế vào (2), ta có:</p>
+
+<p>$$\sigma^2=\int\limits_{-\infty}^{\infty}x^2~p(x)~dx$$</p>
+
+<p>$$\iff \sigma^2=2\int\limits_{0}^{\infty}x^2~p(x)~dx$$</p>
+
+<p>$$\iff \sigma^2=2\sqrt{\frac{k}{2\pi}}\int\limits_{0}^{\infty}x^2~e^{-\cfrac{1}{2}{kx}^2}~dx$$</p>
+
+<p>Quay lại với biểu thức tính tích phân quen thuộc $\int~u~dv=uv-\int~v~du$
+Trong trường hợp này, với $u=x$ và $dv={xe}^{-\cfrac{1}{2}kx^2}$, ta có:</p>
+
+<!---
+$$ \sigma^2=2\sqrt{\frac{k}{2\pi}} \left[ \left.\lim_{M \to \infty} \frac{-x}{k}e^{-\cfrac{1}{2}{kx}^2} \right|_0^M + \frac{1}{k}\int\limits_{0}^{\infty}e^{-\cfrac{1}{2}{kx}^2}~dx\right] $$
+-->
+
+<p><img src="normal_distribution.equation_05.png" alt="" /></p>
+
+<p>Vì</p>
+
+<p>$$\left.\lim_{M \to \infty} \frac{-x}{k}e^{-\cfrac{1}{2}{kx}^2} \right|_0^M = 0$$</p>
+
+<p>và</p>
+
+<p>$$\frac{1}{k}\int\limits_{0}^{\infty}e^{-\cfrac{1}{2}{kx}^2}~dx=\frac{1}{k}\frac{\sqrt{2\pi}}{2\sqrt{k}}$$</p>
+
+<p>nên</p>
+
+<p>$$\sigma^2=2\sqrt{\frac{k}{2\pi}}\int\limits_{0}^{\infty}x^2~e^{-\cfrac{1}{2}{kx}^2}~dx = 2\frac{\sqrt{k}}{\sqrt{2\pi}} \frac{1}{k}\frac{\sqrt{2\pi}}{2\sqrt{k}} = \frac{1}{k}$$</p>
+
+<p>$$\iff k=\frac{1}{\sigma^2}$$</p>
+
+<h4 id="hàm-phân-phối-chuẩn">Hàm phân phối chuẩn:</h4>
+
+<p>Với <code>A</code> và <code>k</code> xác định như trên, ta có ngay:</p>
+
+<p>$$p(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\cfrac{1}{2}\left(\cfrac{x}{\sigma}\right)^2}$$</p>
+
+<p>Và đây là hàm phân phối xác suất được suy ra cho bài toán này. Từ đây, ta có thể suy ra hàm phân phối chuẩn tổng quát với trị trung bình $\mu$ và độ lệch chuẩn $\sigma$ cho trước bằng cách <code>dịch</code> hàm phân phối trên theo phương x với giá trị $\mu$. Kết quả:</p>
+
+<p>$$p(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\cfrac{1}{2}\left(\cfrac{x-\mu}{\sigma}\right)^2}$$</p>
+
+<h3 id="tham-khảo">Tham khảo:</h3>
+
+<ul>
+<li><a href="http://courses.ncssm.edu/math/Talks/PDFS/normal.pdf">http://courses.ncssm.edu/math/Talks/PDFS/normal.pdf</a></li>
+<li><a href="https://www.quora.com/How-did-humans-derive-the-normal-distribution">https://www.quora.com/How-did-humans-derive-the-normal-distribution</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Normal_distribution">https://en.wikipedia.org/wiki/Normal_distribution</a></li>
+</ul>
+
+  </div>
+
+  <div id=links>
+    
+      <a class="basic-alignment left" href="https://tranduythanh.github.io/post/syntax-sample-page/">&laquo; Syntax Sample Page</a>
+    
+    
+  </div>
+</section>
+
+    </div>
+    
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-91857744-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</body>
+</html>
+
+
+

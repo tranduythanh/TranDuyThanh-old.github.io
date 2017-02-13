@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on From zero to AI</title>
+    <link>https://tranduythanh.github.io/post/index.xml</link>
+    <description>Recent content in Posts on From zero to AI</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Feb 2017 13:53:07 +0700</lastBuildDate>
+    <atom:link href="https://tranduythanh.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Normal Distribution - Phân phối chuẩn</title>
+      <link>https://tranduythanh.github.io/post/normal_distribution/</link>
+      <pubDate>Sun, 12 Feb 2017 13:53:07 +0700</pubDate>
+      
+      <guid>https://tranduythanh.github.io/post/normal_distribution/</guid>
+      <description>
+
+&lt;h3 id=&#34;từ-đâu-người-ta-nhận-ra-sự-hiện-diện-của-phân-phối-chuẩn&#34;&gt;Từ đâu người ta nhận ra sự hiện diện của phân phối chuẩn?&lt;/h3&gt;
+
+&lt;p&gt;Làm việc với thống kê, tôi nghe nhiều về phân phối chuẩn. Cơ mà tôi cứ thắc mắc mãi:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Từ đâu mà người ta &lt;code&gt;nhận ra sự có mặt&lt;/code&gt; của phân phối chuẩn?&lt;/li&gt;
+&lt;li&gt;Hàm phân phối xác suất của phân phối chuẩn được &lt;code&gt;tìm ra như thế nào&lt;/code&gt;?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Từ các &lt;a href=&#34;https://www.quora.com/How-did-humans-derive-the-normal-distribution&#34;&gt;câu trả lời&lt;/a&gt;, tôi lần theo các tham khảo và cuối cùng cũng tổng hợp cho mình một câu trả lời hài lòng. Nay tôi xin tóm tắt lại cùng với một vài kiến giải dựa trên hiểu biết khiêm tốn của mình:&lt;/p&gt;
+
+&lt;p&gt;Từ lâu, trong quá trình thống kê các thông số như:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Đặc tính sinh trắc học của những người khỏe mạnh, cùng giới tính, độ tuổi: cân nặng, chiều cao, trị số mạch, huyết áp, đường máu, số lượng hồng cầu&lt;/li&gt;
+&lt;li&gt;Các chỉ số sinh học của loài vật, loài cây cùng độ tuổi&lt;/li&gt;
+&lt;li&gt;Khối lượng, kích thước của các sản phẩm do cùng một máy (hoặc hệ thống máy) sản xuất ra&lt;/li&gt;
+&lt;li&gt;Độ lệch của phi tiêu (trong trò chơi phóng phi tiêu vào bia điểm gồm các vòng tròn đen trắng)
+&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Người ta đã nhận thấy biểu đồ phân phối xác suất (cũng như biểu đồ phần phối tần số) của các thông số trên đều có dạng na ná nhau, nhìn giống như cái chuông (bell curve).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;normal_distribution.diastolic_blood_pressure.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Nhìn vào những biểu đồ phân phối kiểu như thế này, chắc bạn cũng bắt đầu đoán nhận rằng phải có một quy luật chung nào đó. Và nếu quy luật đó tồn tại thì nó có thể được biểu diễn được bởi một hàm số toán học (chính là hàm phân phối xác suất)&lt;/p&gt;
+
+&lt;h3 id=&#34;ta-đi-tìm-hàm-phân-phối-xác-suất-đó-thế-nào-đây&#34;&gt;Ta đi tìm hàm phân phối xác suất đó thế nào đây?&lt;/h3&gt;
+
+&lt;p&gt;Ý tưởng: thử áp dụng toán học để phân tích 1 vị dụ cụ thể (đã đưa ra ở trên)&lt;/p&gt;
+
+&lt;p&gt;Ở đây tôi sẽ phân tích ví dụ về trò chơi ném phi tiêu. Để bắt đầu, cần lưu ý 3 giả định sau:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Độ lệch của phi tiêu không phụ thuộc vào &lt;code&gt;hướng của hệ trục tọa độ&lt;/code&gt; (Ở đây ta lấy tâm của bia làm gốc tọa độ decarte)&lt;/li&gt;
+&lt;li&gt;Độ lệch theo hướng &lt;code&gt;trực giao&lt;/code&gt; là &lt;code&gt;độc lập&lt;/code&gt;. Tức là nếu chúng ta đi chệch nhiều theo một hướng thì xác suất của các hướng khác không bị ảnh hưởng. (Ở đây ta chỉ có 2 hướng: ngang-dọc)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Sai lệch nhỏ&lt;/code&gt; dễ xay ra hơn &lt;code&gt;sai lệch lớn&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Giờ vầy: giả sử giờ bạn &lt;em&gt;ngứa tay&lt;/em&gt; phóng phi tiêu lên bảng. Xác suất nó bay trúng vùng tô đậm nhỏ nhỏ (gọi là A) trong hình dưới đây là bao nhiêu?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;normal_distribution.cartesian_plane.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Với $\Delta x$, $\Delta y$ vô cùng nhỏ, dễ thấy:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;theo phương ngang (x), xác suất phi tiêu bay vào khoảng $[x, x+\Delta x]$ là $p(x)\Delta x$&lt;/li&gt;
+&lt;li&gt;theo phương dọc (y), xác suất phi tiêu bay vào khoảng $[y, y+\Delta y]$ là $p(y)\Delta y$&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Với giả định độc lập (2) ở trên, ta suy ra xác suất phi tiêu bay vào trong A (vùng tô đậm) là $P_A = p(x)\Delta x.p(y)\Delta y$&lt;/p&gt;
+
+&lt;p&gt;Với giả định (1) ở trên, ta suy ra rằng: bất kỳ vùng mặt bảng tương tự A nằm cách tâm O (cũng là tâm bảng) có diện tích bằng $\Delta x\Delta y$ đều có cùng xác suất phi tiêu bay vào. Vậy nên, ta có:
+$$P_A = p(x)\Delta x.p(y)\Delta y = g( r)\Delta x\Delta y$$
+Dễ thấy rằng:
+$$g( r) = p(x)p(y)$$
+Đạo hàm 2 vế theo biến $\theta$. Vì hàm &lt;code&gt;g&lt;/code&gt; chỉ phụ thuộc vào khoảng cách từ A đến tâm O (tức là r) chứ không phụ thuộc vào hướng của A so với O (tức là $\theta$) nên ta có:
+$$0=p(x)\frac{dp(y)}{d\theta}+\frac{dp(x)}{d\theta}$$&lt;/p&gt;
+
+&lt;p&gt;Với $x=r.cos(\theta)$ và $y=r.sin(\theta)$, áp dụng vào phương trình trên và tính đạo hàm, ta có:
+$$0=p(x)p&amp;rsquo;(y)(r.cos(\theta))+p(y)p&amp;rsquo;(x)(-r.sin(\theta))$$
+tương đương với:
+$$0=p(x)p&amp;rsquo;(y)x-p(y)p&amp;rsquo;(x)y$$
+hay:
+$$\frac{p&amp;rsquo;(x)}{x.p(x)}=\frac{p&amp;rsquo;(y)}{y.p(y)}$$
+Phương trình vi phân này phải đúng với bất kỳ giá trị nào của $x$, $y$ (cần nhắc lại rằng $x$ và $y$ là 2 biến độc lập). Điều đó chỉ xảy ra khi và chỉ khi mỗi tỉ lệ ở mỗi vế của phương trình vi phân trên là một hằng số. Tức là:
+$$\frac{p&amp;rsquo;(x)}{x.p(x)}=\frac{p&amp;rsquo;(y)}{y.p(y)}=C$$
+Bài toán của chúng ta bây giờ quy về việc giải phương trình vi phân sau:
+$$\frac{p&amp;rsquo;(x)}{x.p(x)}=C$$
+$$\iff \frac{p&amp;rsquo;(x)}{p(x)}=Cx$$
+$$\iff ln(p(x))=\frac{1}{2}Cx^2+c$$
+$$\iff p(x)=Ae^{\textstyle\cfrac{1}{2}Cx^2}$$&lt;/p&gt;
+
+&lt;p&gt;Với giả định số 3  (&lt;code&gt;Sai lệch nhỏ&lt;/code&gt; dễ xảy ra hơn &lt;code&gt;sai lệch lớn&lt;/code&gt;), ta suy ra C phải là &lt;code&gt;số âm&lt;/code&gt;. Và ta viết lại phương trình trên như sau:
+$$p(x)=Ae^{\textstyle-\cfrac{1}{2}kx^2} ~~~~~ (k &amp;gt; 0)$$&lt;/p&gt;
+
+&lt;p&gt;Nhiệm vụ tiếp theo là tìm &lt;code&gt;A&lt;/code&gt; và &lt;code&gt;k&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;xác-định-a&#34;&gt;Xác định A&lt;/h4&gt;
+
+&lt;p&gt;Bất kỳ một hàm phân phối xác suất nào cũng đều phải thỏa mãn: tổng diện tích &lt;strong&gt;&lt;em&gt;dưới đường cong&lt;/em&gt;&lt;/strong&gt; (phần xanh dương trong các ví dụ ở dưới) phải bằng 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;normal_distribution.total.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Và tất nhiên hàm &lt;code&gt;p&lt;/code&gt; cũng không ngoại lệ. Ta có:&lt;/p&gt;
+
+&lt;p&gt;$$\int\limits_{-\infty}^{\infty}\textstyle Ae^{-\cfrac{1}{2}kx^2}~dx = 1$$&lt;/p&gt;
+
+&lt;p&gt;$$\iff \int\limits_{-\infty}^{\infty}\textstyle e^{-\cfrac{1}{2}kx^2}~dx = \frac{1}{A}$$&lt;/p&gt;
+
+&lt;p&gt;Vì hàm số $~~~~~\textstyle e^{\textstyle-\cfrac{1}{2}kx^2}$ có tính đối xứng, nên ta suy ra:&lt;/p&gt;
+
+&lt;p&gt;$$\int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}kx^2}~dx = \frac{1}{2A}$$&lt;/p&gt;
+
+&lt;p&gt;Tương tự, ta cũng có biểu thức với &lt;code&gt;y&lt;/code&gt; như sau:&lt;/p&gt;
+
+&lt;p&gt;$$\int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}ky^2}~dy = \frac{1}{2A}$$&lt;/p&gt;
+
+&lt;p&gt;Nhân vế theo vế, ta có:&lt;/p&gt;
+
+&lt;!--- 
+$$\left( \int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}kx^2}~dx\right).\left( \int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}ky^2}~dy\right) = \frac{1}{{4A}^2}$$
+--&gt;
+
+&lt;p&gt;&lt;img src=&#34;normal_distribution.equation_01.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Vì &lt;code&gt;x&lt;/code&gt;, &lt;code&gt;y&lt;/code&gt; là 2 biến độc lập, ta có thể viết lại tích 2 tích phân trên như một tích phân 2 lớp:&lt;/p&gt;
+
+&lt;!---
+$$\int\limits_{0}^{\infty}\int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}k(x^2+y^2)}~dydx = \frac{1}{{4A}^2}$$
+--&gt;
+
+&lt;p&gt;&lt;img src=&#34;normal_distribution.equation_02.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Chuyển về hệ tọa độ cực (với biến $r$ và $\theta$), ta có:&lt;/p&gt;
+
+&lt;!---
+$$\int\limits_{0}^{\pi/2}\int\limits_{0}^{\infty}\textstyle e^{-\cfrac{1}{2}k(r^2)}~r~dr~d\theta = \frac{1}{{4A}^2}$$
+--&gt;
+
+&lt;p&gt;&lt;img src=&#34;normal_distribution.equation_03.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Với  $ u=-\frac{k}{2}r^2 $ , ta có:&lt;/p&gt;
+
+&lt;!---
+$$\int\limits_{0}^{\pi/2} {-\frac{1}{k}} \left[ \int\limits_{0}^{-\infty}\textstyle e^u~du~d\theta \right] = \frac{1}{{4A}^2}$$
+--&gt;
+
+&lt;p&gt;&lt;img src=&#34;normal_distribution.equation_04.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;$$\iff \int\limits_{0}^{\pi/2} {-\frac{d\theta}{dk}} = \frac{1}{{4A}^2}$$&lt;/p&gt;
+
+&lt;p&gt;$$\iff -\frac{\pi}{2k} = \frac{1}{{4A}^2}$$&lt;/p&gt;
+
+&lt;p&gt;$$\iff A = \sqrt{\frac{k}{2\pi}}~~e^\left(-\cfrac{1}{2}{kx}^2\right)$$&lt;/p&gt;
+
+&lt;h4 id=&#34;xác-định-k&#34;&gt;Xác định k&lt;/h4&gt;
+
+&lt;p&gt;Ta biết rằng: trung bình (mean) và phương sai (variance) được xác định như sau:&lt;/p&gt;
+
+&lt;p&gt;$$(1)~~~~~\mu=\int\limits_{-\infty}^{\infty}x~p(x)~dx$$&lt;/p&gt;
+
+&lt;p&gt;$$(2)~~~~~\sigma^2=\int\limits_{-\infty}^{\infty}(x-\mu)^2~p(x)~dx$$&lt;/p&gt;
+
+&lt;p&gt;Vì $x~p(x)$ là hàm lẻ nên ta có ngay $\mu=0$. Thế vào (2), ta có:&lt;/p&gt;
+
+&lt;p&gt;$$\sigma^2=\int\limits_{-\infty}^{\infty}x^2~p(x)~dx$$&lt;/p&gt;
+
+&lt;p&gt;$$\iff \sigma^2=2\int\limits_{0}^{\infty}x^2~p(x)~dx$$&lt;/p&gt;
+
+&lt;p&gt;$$\iff \sigma^2=2\sqrt{\frac{k}{2\pi}}\int\limits_{0}^{\infty}x^2~e^{-\cfrac{1}{2}{kx}^2}~dx$$&lt;/p&gt;
+
+&lt;p&gt;Quay lại với biểu thức tính tích phân quen thuộc $\int~u~dv=uv-\int~v~du$
+Trong trường hợp này, với $u=x$ và $dv={xe}^{-\cfrac{1}{2}kx^2}$, ta có:&lt;/p&gt;
+
+&lt;!---
+$$ \sigma^2=2\sqrt{\frac{k}{2\pi}} \left[ \left.\lim_{M \to \infty} \frac{-x}{k}e^{-\cfrac{1}{2}{kx}^2} \right|_0^M + \frac{1}{k}\int\limits_{0}^{\infty}e^{-\cfrac{1}{2}{kx}^2}~dx\right] $$
+--&gt;
+
+&lt;p&gt;&lt;img src=&#34;normal_distribution.equation_05.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Vì&lt;/p&gt;
+
+&lt;p&gt;$$\left.\lim_{M \to \infty} \frac{-x}{k}e^{-\cfrac{1}{2}{kx}^2} \right|_0^M = 0$$&lt;/p&gt;
+
+&lt;p&gt;và&lt;/p&gt;
+
+&lt;p&gt;$$\frac{1}{k}\int\limits_{0}^{\infty}e^{-\cfrac{1}{2}{kx}^2}~dx=\frac{1}{k}\frac{\sqrt{2\pi}}{2\sqrt{k}}$$&lt;/p&gt;
+
+&lt;p&gt;nên&lt;/p&gt;
+
+&lt;p&gt;$$\sigma^2=2\sqrt{\frac{k}{2\pi}}\int\limits_{0}^{\infty}x^2~e^{-\cfrac{1}{2}{kx}^2}~dx = 2\frac{\sqrt{k}}{\sqrt{2\pi}} \frac{1}{k}\frac{\sqrt{2\pi}}{2\sqrt{k}} = \frac{1}{k}$$&lt;/p&gt;
+
+&lt;p&gt;$$\iff k=\frac{1}{\sigma^2}$$&lt;/p&gt;
+
+&lt;h4 id=&#34;hàm-phân-phối-chuẩn&#34;&gt;Hàm phân phối chuẩn:&lt;/h4&gt;
+
+&lt;p&gt;Với &lt;code&gt;A&lt;/code&gt; và &lt;code&gt;k&lt;/code&gt; xác định như trên, ta có ngay:&lt;/p&gt;
+
+&lt;p&gt;$$p(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\cfrac{1}{2}\left(\cfrac{x}{\sigma}\right)^2}$$&lt;/p&gt;
+
+&lt;p&gt;Và đây là hàm phân phối xác suất được suy ra cho bài toán này. Từ đây, ta có thể suy ra hàm phân phối chuẩn tổng quát với trị trung bình $\mu$ và độ lệch chuẩn $\sigma$ cho trước bằng cách &lt;code&gt;dịch&lt;/code&gt; hàm phân phối trên theo phương x với giá trị $\mu$. Kết quả:&lt;/p&gt;
+
+&lt;p&gt;$$p(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\cfrac{1}{2}\left(\cfrac{x-\mu}{\sigma}\right)^2}$$&lt;/p&gt;
+
+&lt;h3 id=&#34;tham-khảo&#34;&gt;Tham khảo:&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://courses.ncssm.edu/math/Talks/PDFS/normal.pdf&#34;&gt;http://courses.ncssm.edu/math/Talks/PDFS/normal.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.quora.com/How-did-humans-derive-the-normal-distribution&#34;&gt;https://www.quora.com/How-did-humans-derive-the-normal-distribution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Normal_distribution&#34;&gt;https://en.wikipedia.org/wiki/Normal_distribution&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Syntax Sample Page</title>
+      <link>https://tranduythanh.github.io/post/syntax-sample-page/</link>
+      <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://tranduythanh.github.io/post/syntax-sample-page/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/davidhampgonsalves/hugo-black-and-light-theme&#34;&gt;Black and Light&lt;/a&gt; is a high contrast, performant and Javascript-free theme.&lt;/p&gt;
+
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Loads in a single request (with web-fonts disabled)&lt;/li&gt;
+&lt;li&gt;100 / 100 on Google Page Speed test (100 / 100 on mobile with web-fonts disabled)&lt;/li&gt;
+&lt;li&gt;Scriptless (unless you enable Google Analyitcs)&lt;/li&gt;
+&lt;li&gt;Styles inlined in head&lt;/li&gt;
+&lt;li&gt;High Contrast&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;style-demo&#34;&gt;Style Demo&lt;/h2&gt;
+
+&lt;h1 id=&#34;h1-heading&#34;&gt;h1 Heading&lt;/h1&gt;
+
+&lt;h2 id=&#34;h2-heading&#34;&gt;h2 Heading&lt;/h2&gt;
+
+&lt;h3 id=&#34;h3-heading&#34;&gt;h3 Heading&lt;/h3&gt;
+
+&lt;h4 id=&#34;h4-heading&#34;&gt;h4 Heading&lt;/h4&gt;
+
+&lt;h5 id=&#34;h5-heading&#34;&gt;h5 Heading&lt;/h5&gt;
+
+&lt;h6 id=&#34;h6-heading&#34;&gt;h6 Heading&lt;/h6&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;This is bold text&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;This is bold text&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This is italic text&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This is italic text&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;del&gt;Deleted text&lt;/del&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Block quotes are
+written like so.&lt;/p&gt;
+
+&lt;p&gt;They can span multiple paragraphs,
+if you like.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Some text, and some &lt;code&gt;code&lt;/code&gt; and then a nice plain &lt;a href=&#34;https://github.com/davidhampgonsalves/davidhampgonsalves.com-hugo&#34; title=&#34;title text!&#34;&gt;link with title&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;and then&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a list by starting a line with &lt;code&gt;+&lt;/code&gt;, &lt;code&gt;-&lt;/code&gt;, or &lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Sub-lists are made by indenting 2 spaces:
+
+&lt;ul&gt;
+&lt;li&gt;Marker character change forces new list start:&lt;/li&gt;
+&lt;li&gt;Ac tristique libero volutpat at&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Very easy!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;vs.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;
+&lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;
+&lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;Inline &lt;code&gt;code&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;foo&lt;/span&gt; &lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #a6e22e&#34;&gt;bar&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #f8f8f2&#34;&gt;{&lt;/span&gt;
+  &lt;span style=&#34;color: #66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #a6e22e&#34;&gt;bar&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;++&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #f8f8f2&#34;&gt;};&lt;/span&gt;
+
+&lt;span style=&#34;color: #a6e22e&#34;&gt;console&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #a6e22e&#34;&gt;log&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #a6e22e&#34;&gt;foo&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #ae81ff&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color: #f8f8f2&#34;&gt;));&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&#34;table&#34;&gt;Table&lt;/h2&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Statistics&lt;/th&gt;
+&lt;th&gt;Computer Science&lt;/th&gt;
+&lt;th&gt;Mearning&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Estimation&lt;/td&gt;
+&lt;td&gt;Learning&lt;/td&gt;
+&lt;td&gt;Using data to estimate an unknown quantity&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Classification&lt;/td&gt;
+&lt;td&gt;Supervised Learning&lt;/td&gt;
+&lt;td&gt;Predicting a discrete Y from X&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Clustering&lt;/td&gt;
+&lt;td&gt;Unsupervised Learning&lt;/td&gt;
+&lt;td&gt;Putting data into groups&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Data&lt;/td&gt;
+&lt;td&gt;Training Sample&lt;/td&gt;
+&lt;td&gt;(X1,Y1), &amp;hellip;, (Xn, Yn)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Covariates&lt;/td&gt;
+&lt;td&gt;Features&lt;/td&gt;
+&lt;td&gt;the Xi&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Classifier&lt;/td&gt;
+&lt;td&gt;Hypothesis&lt;/td&gt;
+&lt;td&gt;A map from covariates to outcomes&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Hypothesis&lt;/td&gt;
+&lt;td&gt;&amp;mdash;&lt;/td&gt;
+&lt;td&gt;Subset of a parameter space&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Confidence Interval&lt;/td&gt;
+&lt;td&gt;&amp;mdash;&lt;/td&gt;
+&lt;td&gt;Interval that contains unknown quantity&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Directed Acyclic Graph&lt;/td&gt;
+&lt;td&gt;Bayes net&lt;/td&gt;
+&lt;td&gt;Multivariate distribution with specified conditional&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Bayesian inference&lt;/td&gt;
+&lt;td&gt;Bayesian inference&lt;/td&gt;
+&lt;td&gt;Statistical methods for using data to update subjective beliefs&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Frequentist inference&lt;/td&gt;
+&lt;td&gt;&amp;mdash;&lt;/td&gt;
+&lt;td&gt;Statistical methods for producing point estimates and confidence intervals with guarantees on frequency behavior&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Large deviation bounds&lt;/td&gt;
+&lt;td&gt;PAC learning&lt;/td&gt;
+&lt;td&gt;Uniform bounds on probability of errors&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&#34;math&#34;&gt;Math&lt;/h1&gt;
+
+&lt;p&gt;Sample inline math $\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$. Good job&lt;/p&gt;
+
+&lt;p&gt;Another sample math
+$$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
